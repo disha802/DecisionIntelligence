@@ -1,0 +1,42 @@
+{
+    "reg_funding_total_usd": {
+        "rmse": 145731840.71011874,
+        "r2": 0.02172253088759779,
+        "features": [
+            "funding_rounds"
+        ]
+    },
+    "clf_status": {
+        "accuracy": 0.7925267440108483,
+        "confusion_matrix": [
+            [
+                15780,
+                0,
+                0,
+                0
+            ],
+            [
+                1696,
+                0,
+                0,
+                0
+            ],
+            [
+                1946,
+                0,
+                0,
+                0
+            ],
+            [
+                489,
+                0,
+                0,
+                0
+            ]
+        ],
+        "features": [
+            "funding_total_usd",
+            "funding_rounds"
+        ]
+    }
+}

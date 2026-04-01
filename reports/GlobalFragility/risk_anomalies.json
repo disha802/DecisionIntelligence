@@ -1,0 +1,39 @@
+{
+    "Sales": {
+        "count": 467,
+        "percentage": 0.25869853034860596,
+        "indices": [
+            152,
+            155,
+            160,
+            172,
+            174,
+            1353,
+            1370,
+            1375,
+            1594,
+            3204
+        ]
+    },
+    "Order Profit Per Order": {
+        "count": 3608,
+        "percentage": 1.9986815792243477,
+        "indices": [
+            34,
+            125,
+            152,
+            174,
+            216,
+            392,
+            394,
+            418,
+            526,
+            704
+        ]
+    },
+    "Days for shipping (real)": {
+        "count": 0,
+        "percentage": 0.0,
+        "indices": []
+    }
+}

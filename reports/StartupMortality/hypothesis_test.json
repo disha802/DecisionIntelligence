@@ -1,0 +1,9 @@
+{
+    "groups": [
+        "operating",
+        "closed"
+    ],
+    "t_statistic": 2.374509754565685,
+    "p_value": 0.017575436711280895,
+    "statistically_significant": true
+}

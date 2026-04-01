@@ -1,0 +1,27 @@
+{
+    "reg_Order Profit Per Order": {
+        "rmse": 102.33071203882223,
+        "r2": 0.02021674597908485,
+        "features": [
+            "Sales",
+            "Order Item Quantity"
+        ]
+    },
+    "clf_Late_delivery_risk": {
+        "accuracy": 0.5492466208730334,
+        "confusion_matrix": [
+            [
+                0,
+                24411
+            ],
+            [
+                0,
+                29745
+            ]
+        ],
+        "features": [
+            "Sales",
+            "Order Item Total"
+        ]
+    }
+}

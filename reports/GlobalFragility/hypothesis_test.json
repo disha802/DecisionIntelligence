@@ -1,0 +1,9 @@
+{
+    "groups": [
+        "Standard Class",
+        "Second Class"
+    ],
+    "t_statistic": 0.5840008033985867,
+    "p_value": 0.5592206929181515,
+    "statistically_significant": false
+}
