@@ -34,6 +34,22 @@ class StatsEngine:
         plt.close()
         print(f"Heatmap saved to {output_path}")
 
+    def plot_boxplots(self, target_cols, output_path):
+        """Exp 1: Implementing Box Plot for outlier visualization"""
+        print(f"Plotting boxplots for {target_cols}...")
+        plt.figure(figsize=(12, 6))
+        # Filter for rows that have at least one of the target_cols
+        cols_available = [c for c in target_cols if c in self.df.columns]
+        if not cols_available:
+            return
+        sns.boxplot(data=self.df[cols_available])
+        plt.title(f"Box Plot: Outlier Analysis ({self.story_name})")
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.savefig(output_path)
+        plt.close()
+        print(f"Boxplots saved to {output_path}")
+
     def perform_anova(self, category_col, value_col):
         """Phase 3: ANOVA for segment comparison"""
         print(f"Performing ANOVA for {value_col} across {category_col}...")

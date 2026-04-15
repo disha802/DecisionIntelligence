@@ -159,3 +159,6 @@ datasets/*.csv
 data/
 models/*.pkl
 models/*.joblib
+
+# Analytical Explanation (Internal)
+analytical_explanation.txt

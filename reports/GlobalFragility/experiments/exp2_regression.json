@@ -1,0 +1,8 @@
+{
+    "rmse": 102.33071203882223,
+    "r2": 0.02021674597908485,
+    "features": [
+        "Sales",
+        "Order Item Quantity"
+    ]
+}

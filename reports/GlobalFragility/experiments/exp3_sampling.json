@@ -1,0 +1,23 @@
+{
+    "random": {
+        "method": "Random",
+        "population_mean": 21.974988638594038,
+        "sample_mean": 33.00670009422,
+        "delta": 11.031711455625963,
+        "accurate": false
+    },
+    "stratified": {
+        "method": "Stratified",
+        "population_mean": 21.974988638594038,
+        "sample_mean": 34.07880010188,
+        "delta": 12.103811463285961,
+        "accurate": false
+    },
+    "systematic": {
+        "method": "Systematic",
+        "population_mean": 21.974988638594038,
+        "sample_mean": 23.242162683174495,
+        "delta": 1.2671740445804573,
+        "accurate": true
+    }
+}

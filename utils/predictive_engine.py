@@ -61,7 +61,7 @@ class PredictiveEngine:
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
         
         if model_type == 'logistic':
-            model = LogisticRegression(max_iter=1000)
+            model = LogisticRegression(max_iter=1000, class_weight='balanced')
         else:
             model = DecisionTreeClassifier()
             

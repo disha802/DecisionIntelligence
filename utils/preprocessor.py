@@ -33,7 +33,16 @@ class DataPreprocessor:
         
         # Specific cleaning for financial data (e.g., '-' in Startup dataset)
         if "startup" in self.filepath.lower():
-            self.df['funding_total_usd'] = pd.to_numeric(self.df['funding_total_usd'].replace('-', '0'), errors='coerce').fillna(0)
+            # Remove commas and handle '-' by making them NaN
+            self.df['funding_total_usd'] = self.df['funding_total_usd'].astype(str).str.replace(',', '', regex=False)
+            self.df['funding_total_usd'] = pd.to_numeric(self.df['funding_total_usd'].replace('-', np.nan), errors='coerce')
+            
+            # Fill with median instead of 0 for more realistic statistics
+            median_funding = self.df['funding_total_usd'].median()
+            self.df['funding_total_usd'] = self.df['funding_total_usd'].fillna(median_funding)
+            
+            # Feature Engineering: Add Log Transformation to handle skewness
+            self.df['log_funding_total_usd'] = np.log1p(self.df['funding_total_usd'])
 
         # Fill numeric missing with median, categorical with mode
         numeric_cols = self.df.select_dtypes(include=[np.number]).columns

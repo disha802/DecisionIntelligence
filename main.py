@@ -16,6 +16,9 @@ from utils.predictive_engine import PredictiveEngine
 from utils.timeseries_engine import TimeSeriesEngine
 from utils.risk_engine import RiskEngine
 from utils.prescriptive_engine import PrescriptiveEngine
+from utils.sampling_engine import SamplingEngine
+from utils.clustering_engine import ClusteringEngine
+from utils.distribution_engine import DistributionEngine
 
 def run_project_pipeline(filepath, story_name, risk_cols, group_col, test_val_col, pred_config):
     print(f"\n{'='*50}")
@@ -23,7 +26,7 @@ def run_project_pipeline(filepath, story_name, risk_cols, group_col, test_val_co
     print(f"{'='*50}\n")
     
     # Create directories
-    os.makedirs(f"reports/{story_name}", exist_ok=True)
+    os.makedirs(f"reports/{story_name}/experiments", exist_ok=True)
     os.makedirs(f"data", exist_ok=True)
     os.makedirs(f"models", exist_ok=True)
     
@@ -116,27 +119,49 @@ def run_project_pipeline(filepath, story_name, risk_cols, group_col, test_val_co
     with open(f"reports/{story_name}/prescriptive_strategy.json", "w") as f:
         json.dump(deep_convert(opt_solution), f, indent=4)
     
+    # ---------------------------------------------------------
+    # ADVANCED ANALYTICAL PIPELINE INTEGRATION
+    # ---------------------------------------------------------
+    print(f"\n--- EXECUTING ADVANCED ANALYTICAL SUITE ---")
+    
+    # Outlier Analysis (Box Plot)
+    stats_engine.plot_boxplots(risk_cols, f"reports/{story_name}/experiments/exp1_boxplot.png")
+    
+    # Performance Modeling (Regression Analysis)
+    with open(f"reports/{story_name}/experiments/exp2_regression.json", "w") as f:
+        json.dump(deep_convert(pred_engine.results.get(f"reg_{reg_target}")), f, indent=4)
+    
+    # Sampling Methodology Comparison
+    sampling_engine = SamplingEngine(preprocessor.df, story_name)
+    samples = {
+        'random': sampling_engine.compare_sample_means(reg_target, sampling_engine.simple_random_sample(100), "Random"),
+        'stratified': sampling_engine.compare_sample_means(reg_target, sampling_engine.stratified_sample(group_col, 100), "Stratified"),
+        'systematic': sampling_engine.compare_sample_means(reg_target, sampling_engine.systematic_sample(20), "Systematic")
+    }
+    with open(f"reports/{story_name}/experiments/exp3_sampling.json", "w") as f:
+        json.dump(deep_convert(samples), f, indent=4)
+        
+    # Cluster Segmentation
+    clustering_engine = ClusteringEngine(preprocessor.df, story_name)
+    cluster_results, inertia = clustering_engine.run_kmeans(risk_cols, n_clusters=3)
+    clustering_engine.plot_clusters(cluster_results, f"reports/{story_name}/experiments/exp4_clustering.png")
+    with open(f"reports/{story_name}/experiments/exp4_clustering.json", "w") as f:
+        json.dump({'inertia': float(inertia)}, f, indent=4)
+        
+    # Probability Distribution Analysis
+    dist_engine = DistributionEngine(preprocessor.df, story_name)
+    dist_results = dist_engine.analyze_distribution(reg_target)
+    dist_engine.plot_fitted_distribution(reg_target, f"reports/{story_name}/experiments/exp5_distribution.png")
+    with open(f"reports/{story_name}/experiments/exp5_distribution.json", "w") as f:
+        json.dump(deep_convert(dist_results), f, indent=4)
+        
+    # Experiment 6: Statistical Properties (Summary Stats already generated)
+    # Experiment 7: Statistical Inference (Hypothesis Test/ANOVA already done)
+    # Experiment 8: Time Series Data (ARIMA already run)
+    
     print(f"\nCOMPLETED FULL PIPELINE FOR {story_name}")
 
 if __name__ == "__main__":
-    # Story A: Global Fragility (Supply Chain)
-    supply_chain_data = "datasets/DataCoSupplyChainDataset.csv"
-    run_project_pipeline(
-        supply_chain_data, 
-        "GlobalFragility",
-        risk_cols=['Sales', 'Order Profit Per Order', 'Days for shipping (real)'],
-        group_col='Shipping Mode',
-        test_val_col='Days for shipping (real)',
-        pred_config={
-            'reg_features': ['Sales', 'Order Item Quantity'],
-            'reg_target': 'Order Profit Per Order',
-            'clf_features': ['Sales', 'Order Item Total'],
-            'clf_target': 'Late_delivery_risk',
-            'date_col': 'order date (DateOrders)',
-            'ts_target': 'Sales'
-        }
-    )
-    
     # Story B: Startup Mortality
     startup_data = "datasets/big_startup_secsees_dataset.csv"
     run_project_pipeline(
@@ -147,10 +172,10 @@ if __name__ == "__main__":
         test_val_col='funding_total_usd',
         pred_config={
             'reg_features': ['funding_rounds'],
-            'reg_target': 'funding_total_usd',
-            'clf_features': ['funding_total_usd', 'funding_rounds'],
+            'reg_target': 'log_funding_total_usd',
+            'clf_features': ['log_funding_total_usd', 'funding_rounds'],
             'clf_target': 'status',
             'date_col': 'founded_at',
-            'ts_target': 'funding_total_usd'
+            'ts_target': 'log_funding_total_usd'
         }
     )

@@ -1,28 +1,25 @@
-# 🛡️ Dual-Path Decision Intelligence Platform
+# 🛡️ Startup Mortality Decision Intelligence Platform
 
-A sophisticated end-to-end analytical platform designed to provide systemic insights into two critical domains: **Global Supply Chain Fragility** and **Startup Mortality Risk**.
-
-This project provides a comprehensive suite of tools for data preprocessing, descriptive statistics, anomaly detection, predictive modeling, and prescriptive optimization, all unified under a professional Streamlit dashboard.
+A sophisticated end-to-end analytical platform designed to provide systemic insights into startup survival and funding dynamics. This project provides a comprehensive suite of tools for data preprocessing, descriptive statistics, anomaly detection, predictive modeling, and prescriptive optimization, all unified under a professional Streamlit dashboard.
 
 ## 🚀 Key Features
 
-### 📊 Descriptive Profile
-- **Systemic Linkage Analysis**: Interactive correlation heatmaps identifying hidden relationships between variables.
-- **Statistical Health Checks**: Detailed summary statistics including skewness and variance to assess data quality.
+### 📊 Descriptive Profile & Moments
+- **Systemic Linkage Analysis**: Correlation heatmaps identifying hidden relationships between variables like funding rounds and total capital.
+- **Statistical Health Checks**: Detailed summary statistics including skewness and kurtosis, with support for log-transformed normalization.
 
 ### ⚠️ Systemic Risk Monitor
-- **Structural Anomaly Detection**: Z-Score based identification of outliers in critical risk factors.
-- **Hypothesis Testing**: Statistical validation (T-Tests) of structural shifts across different segments.
-- **Risk Distribution Visuals**: Visualization of extreme value risks in key performance areas.
+- **Structural Anomaly Detection**: Z-Score based identification of outliers in critical risk factors (Funding intensity).
+- **Hypothesis Testing (Inference)**: Statistical validation (T-Tests) of structural shifts between operating and closed startups.
+- **Risk Distribution Visuals**: Visualization of extreme value risks in probabilistic density functions.
 
 ### 🔮 Predictive Intelligence
-- **Forecasting (ARIMA)**: Time-series trend analysis to anticipate future movements.
-- **Multi-Model Regression**: Accuracy-driven profit and funding prediction models.
-- **Classification Engine**: Risk-focused classification for late delivery and startup failure.
+- **Forecasting (ARIMA)**: Time-series trend analysis to anticipate future funding movements with 95% confidence intervals.
+- **Log-Scale Regression**: High-fidelity R²-driven capital prediction models using log-transformed features.
+- **Balanced Classification Engine**: Risk-focused classification handling class imbalance to accurately identify failure probabilities.
 
 ### 🎯 Prescriptive Strategy
-- **Resource Optimization**: Pulse-based optimization for supply chain allocation.
-- **Budget Allocation**: Strategic ROI-driven decision support for startup resource management.
+- **Budget Allocation (Optimization)**: Strategic ROI-driven decision support for startup resource management using Linear Programming.
 
 ---
 
@@ -33,12 +30,12 @@ Create a virtual environment and install the required dependencies:
 
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+venv\Scripts\activate  # On Windows
 pip install -r requirements.txt
 ```
 
 ### 2. Run the Processing Pipeline
-The pipeline handles data cleaning, feature engineering, and model training for both "Global Fragility" and "Startup Mortality" paths.
+The pipeline handles data cleaning (Regex-based), feature engineering (Log-transformations), and model training.
 
 ```bash
 python main.py
@@ -57,9 +54,9 @@ streamlit run app.py
 
 - `app.py`: Main Streamlit dashboard application.
 - `main.py`: Full analytical pipeline orchestrator.
-- `utils/`: Core analytical engines (Stats, Risk, Predictive, TimeSeries, Prescriptive).
+- `utils/`: Core analytical engines (Stats, Risk, Predictive, TimeSeries, Prescriptive, Sampling, Clustering, Distribution).
 - `reports/`: Generated analytical reports and visualizations.
-- `datasets/`: Data source directory (contains CSVs after extraction).
+- `datasets/`: Data source directory.
 
 ---
-**Project Status**: v1.0.0 | **Presentation Edition**
+**Project Status**: v1.1.0 | **Presentation Edition**

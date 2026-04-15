@@ -1,41 +1,41 @@
 {
-    "reg_funding_total_usd": {
-        "rmse": 145731840.71011874,
-        "r2": 0.02172253088759779,
+    "reg_log_funding_total_usd": {
+        "rmse": 1.9725667257832937,
+        "r2": 0.16995752812646203,
         "features": [
             "funding_rounds"
         ]
     },
     "clf_status": {
-        "accuracy": 0.7925267440108483,
+        "accuracy": 0.23122896891165687,
         "confusion_matrix": [
             [
-                15780,
-                0,
-                0,
-                0
+                2663,
+                2109,
+                8613,
+                2395
             ],
             [
-                1696,
-                0,
-                0,
-                0
+                156,
+                396,
+                508,
+                636
             ],
             [
-                1946,
-                0,
-                0,
-                0
+                198,
+                254,
+                1225,
+                269
             ],
             [
-                489,
-                0,
-                0,
-                0
+                19,
+                79,
+                71,
+                320
             ]
         ],
         "features": [
-            "funding_total_usd",
+            "log_funding_total_usd",
             "funding_rounds"
         ]
     }

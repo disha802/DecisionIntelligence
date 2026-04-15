@@ -1,0 +1,8 @@
+{
+    "feature": "log_funding_total_usd",
+    "mean": 14.395854923012857,
+    "std_dev": 2.1556806508706505,
+    "variance": 4.646959068538112,
+    "is_normal": false,
+    "shapiro_p_value": 2.492078463675631e-05
+}

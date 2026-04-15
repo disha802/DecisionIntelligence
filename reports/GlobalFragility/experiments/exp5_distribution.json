@@ -1,0 +1,8 @@
+{
+    "feature": "Order Profit Per Order",
+    "mean": 21.974988638594038,
+    "std_dev": 104.4335257469866,
+    "variance": 10906.361299946515,
+    "is_normal": false,
+    "shapiro_p_value": 4.2289635997552196e-23
+}
